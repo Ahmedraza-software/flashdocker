@@ -1,0 +1,24 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://neondb_owner:npg_4NSEdZDARsV7@ep-broad-resonance-a4rn7uze-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require
+      - SECRET_KEY=u9#r2x!f4w@q8$k^d1p7m&c%0s6j*e_+l)h=3z(y5v-a
+      - ALLOWED_ORIGINS=http://localhost:3000,http://127.0.0.1:3000
+    volumes:
+      - ./backend/uploads:/app/uploads
+
+  frontend:
+    build:
+      context: ./frontend-next
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8000
+    depends_on:
+      - backend
