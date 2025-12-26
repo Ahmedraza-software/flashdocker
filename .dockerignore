@@ -1,10 +1,12 @@
+# Git and meta files
 .git
 .gitignore
 README.md
 docker-compose.yml
 Dockerfile
 .dockerignore
-backend/.git
+
+# Backend: exclude only truly unnecessary files
 backend/.env
 backend/.venv
 backend/venv
@@ -12,11 +14,13 @@ backend/__pycache__
 backend/*.pyc
 backend/*.pyo
 backend/*.pyd
-backend/migrate_to_neon.py
-backend/clear_neon_tables.py
 backend/*.db
 backend/*.sqlite
 backend/uploads
+backend/migrate_to_neon.py
+backend/clear_neon_tables.py
+
+# Frontend: exclude dev artifacts
 frontend-next/.git
 frontend-next/node_modules
 frontend-next/.next
