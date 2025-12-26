@@ -12,6 +12,8 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y gcc postgresql-client supervisor curl && rm -rf /var/lib/apt/lists/* 
 # Copy backend code first
 COPY backend/ ./
+# Verify requirements.txt exists
+RUN ls -la requirements.txt || (echo "Contents of /app:" && ls -la /app)
 # Install Python deps
 RUN pip install --no-cache-dir -r requirements.txt
 # Copy built frontend
