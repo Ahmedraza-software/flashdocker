@@ -9,7 +9,7 @@ RUN npm run build
 FROM python:3.11-slim AS backend
 WORKDIR /app
 # Install system deps
-RUN apt-get update && apt-get install -y gcc postgresql-client supervisor curl && rm -rf /var/lib/apt/lists/* 
+RUN apt-get update && apt-get install -y gcc postgresql-client supervisor curl && rm -rf /var/lib/apt/lists/* && echo "Cache bust: $(date)" 
 # Install Python deps
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
